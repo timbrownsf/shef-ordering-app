@@ -17,7 +17,7 @@ class App extends Component {
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/items" component={ShopList} />
-            {/*<Route exact path="/purchases" component={Purchases} />*/} # TODO
+            <Route exact path="/purchases" component={Purchases} />
           </Switch>
         </div>
       </div>

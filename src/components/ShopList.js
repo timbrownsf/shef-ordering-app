@@ -1,8 +1,6 @@
-import React, { Component, Fragment } from 'react'
-import Link from './Link'
-import { Query } from 'react-apollo'
+import React, {Component, Fragment} from 'react'
+import {Query} from 'react-apollo'
 import gql from 'graphql-tag'
-import { LINKS_PER_PAGE } from '../constants'
 
 SHOP_LIST_QUERY = gql`
 `;
