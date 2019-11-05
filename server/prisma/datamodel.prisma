@@ -1,0 +1,56 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  cart: Cart @relation
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+enum TShirtSize {
+    S,
+    M,
+    L,
+    XL
+}
+
+type Item {
+  id: ID! @id
+  name: String!
+  description: String!
+  availableSizes: [TShirtSize!]! @scalarList(strategy:RELATION)
+  priceMinor: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  carts: [Cart!]! @relation(link: TABLE, name: "CartItem")
+
+}
+
+type Cart {
+  id: ID! @id
+  user: User! @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  items: [Item!]! @relation(name: "CartItem")
+}
+
+type CartItem @relationTable{
+  cart: Cart!
+  item: Item!
+}
+
+type Purchase {
+  id: ID! @id
+  user: User! @relation(link: INLINE)
+  totalMinor: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type PurchaseItems {
+  id: ID! @id
+  purchase: Purchase!
+  item: Item!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
